@@ -1,0 +1,137 @@
+//////////////////////
+1) install nodejs
+
+open your terminal and type below command
+
+sudo apt-get update
+sudo apt-get install nodejs
+sudo apt-get install npm
+
+2) Install Node.js and Development Tools
+ 
+cd ~
+
+curl -sL https://deb.nodesource.com/setup_5.x -o nodesource_setup.sh
+
+sudo -E bash ./nodesource_setup.sh
+
+
+ sudo apt-get install -y nodejs build-essential git
+
+3)  Install an Example Parse Server App
+
+    git clone https://github.com/ParsePlatform/parse-server-example.git 
+	
+	cd ~/parse-server-example
+	
+	npm install
+
+now go to index.js file
+
+and change :  api key and master key, which will be provided by  3EmbedSOft
+
+
+now you have to install forever command 
+
+>  npm install forever -g
+
+>  forever start index.js
+
+now go to browser and type
+
+ip:1337
+
+some imp commands :
+node index.js
+forever list
+netstat tpl
+netstat tpn
+ps aux | grep index.js
+
+
+NOTE : if its working f9 it means you have done 1st setup correctly
+
+/////////////////////////
+install mongodb
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+
+
+echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+
+
+sudo apt-get update
+
+
+sudo apt-get install -y mongodb-org
+
+
+now goto to  
+
+nano /etc/mongo.conf
+
+search for bind and comment it with #
+
+like :  bind=127.0.01 to #bind=127.0.0.1
+
+and restart the mongo with below command 
+
+> service mongod restart;
+
+NOTE :  now type mongo in your terminal if it works f9
+
+you have done 2nd setup correctly.
+
+
+//	
+Installing parse dashboad 
+
+cd ~
+
+
+
+npm install -g parse-dashboard
+
+
+> touch config.json
+
+> nano config.json
+
+add this json data to this file
+
+{
+  "apps": [
+    {
+      "serverURL": "http://ip:1337/parse",
+      "appId": "myAppId",
+      "masterKey": "myMasterKey",
+      "appName": "MyApp"
+    }
+  ],
+  "users": [
+    {  
+      "user":"user1",   // change user and pass for your app
+      "pass":"pass"
+    },
+    {
+      "user":"user2", // change user and pass for your app
+      "pass":"pass"
+    }
+  ]
+  
+}
+
+and then type this command : 
+
+> parse-dashboard --config config.json --allowInsecureHTTP=1 &
+
+type in browser
+
+ip:4040
+
+
+
+
+
+
+	
